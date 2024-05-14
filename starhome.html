@@ -1,0 +1,66 @@
+body {
+	background-color: #f1f1f1;
+	font-family: arial;
+	margin: 0;
+}
+a {
+	color: blue;
+	text-decoration: none;
+	
+}
+nav.mynavbar {
+	/* width: 100%; */
+	background-color: goldenrod;
+	
+	padding: 0px 0px;
+	front-text: 50px;
+
+}
+
+/* Formating Ul Style */
+ul {
+	padding: 0;
+	margin: 0;
+	display: inline;
+	text-align: center;
+	list-style: none;
+}
+ul li {
+	display :inline-block;
+	position: relative;
+	padding: 15px 20px;
+	cursor: pointer;
+}
+ul li:hover {
+	background-color: greenyellow;
+	transition: .5s;
+}
+ul li:hover ul {
+	display: block;
+	opacity: 1;
+	visibility: visible;
+}
+
+
+ul ul li:hover li {
+	display: block;
+}
+
+
+li ul {
+	position: absolute;
+	top: 50px;
+	left: 0;
+	width: 150px;
+	display: none;
+	visibility: hidden;
+}
+li ul li {
+	display: block;
+	background-color: #5ECDCF
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+	float: right;
+  }
