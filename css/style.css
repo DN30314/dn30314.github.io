@@ -1,0 +1,375 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body h1 {
+    font-size: 60px;
+    text-align: center;
+    color: #25AB5E;
+}
+
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.header{
+    background-color: #F1F0F0;
+    /* 
+        fixer la hauteur du header
+        cette hauter = top du du nav-menu dans @media
+        on peut ne pas fixer ni hauteur ni le top, mais on fixe sera mieux
+    */
+    height: 3.2rem;
+}
+.navbar {
+   margin: 0 auto;
+   width: 100%;
+   height: 100%;
+   color: #fff;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   position: relative; /* pour positionner le checkbox */
+}
+.hamburger{
+    display: none ; 
+}
+.bars {
+   position: absolute;
+    top: center;
+    left: center;
+   display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+}
+.bar{
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto; 
+    transition: all 0.3s ease-in-out;
+    background-color: #101010;
+}
+/* le checkbox doit etre confondu avec le hamburger */
+
+/* ******************************** */
+.showNav{
+    position: absolute; 
+    top: center;
+    right: 0;
+    opacity: 0;
+    width: 25px; /* (meme dimension que bars pour etre confondu */
+    height: 29px;
+    z-index: 9; /* pour etre tjs au dessus des bar */
+    cursor: pointer;
+    opacity: 0;
+    display: none;
+}
+/* ******************************** */
+.nav-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav-item {
+    width: 10rem; /* ou bien un margin, margin-left: 5rem*/
+    /* centrer le contenu */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1rem; 
+    /* pour positionner les dropdown */
+    position: relative; 
+}
+
+.nav-link{
+    color: #101010; 
+    letter-spacing: 1px;
+    font-size: .95rem;
+    transition: .3s ease-in-out;
+    /* centrer */
+    line-height: 3.2rem; 
+    /* */
+    cursor: pointer;
+}
+.nav-item:hover .nav-link{
+    color: #fff;
+}
+.nav-logo {
+    font-size: 2rem;
+    color: #101010;
+}
+/* gerer les dropdown */
+.dropdown-menu{
+    position: absolute;
+    top: 100%; /* c'est par apport au parent (li.nav-item) */
+    left: 0;
+    width: 9rem;
+    /* 
+    z-index: 9; et ne pas faire z-index:-1 pour <section> , car si il ya un button dans 
+    section on ne peut pas cliquer sur lui
+    */
+    z-index: 9; 
+
+    pointer-events: none;/* annuler les evenements de la souris, pointeur, doigt */
+}
+.dropdown-menu  ul{
+    background-color: rgb(193, 209, 240); 
+}
+.dropdown-menu .dropdown-item{
+    border-bottom: 1px solid #77a5bb;
+    position: relative; /* pour positionner les secondes dropdown */ 
+}
+.dropdown-link{
+    cursor: pointer;
+}
+.dropdown-menu .dropdown-item:last-child{
+    border-bottom: none;
+}
+.dropdown-menu .dropdown-item > .dropdown-link{
+/*
+click dans n'importe quel endroit de <li> correspond au click sur le <a>
+*/
+    display: inline-block;
+    width: 100%;
+    padding: .7rem .7rem .7rem 1rem;
+    color: #101010; 
+    transition: .3s ease-in-out;
+    /* positionner le <i> */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dropdown-menu .dropdown-item:hover > .dropdown-link{
+    color: #fff; 
+}
+/* rotation de .caret aprés un hover */
+.nav-item:hover > a > i,
+.dropdown-item:hover > a > i{
+    transform: rotate(-90deg);
+}
+/* second dropdown */
+.second{
+    top: 0;
+    left: 100%;
+}
+.second ul{
+    margin-left: .8rem;
+}
+
+.arrow{
+    width: 12px;
+    height: 12px;
+    background-color: rgb(193, 209, 240); 
+    position: absolute;
+    top: -6px;
+    left: 20%;
+    transform: rotateZ(45deg);
+}
+.second .arrow{
+    top: 15%;
+    left: -6px;
+}
+.dropdown-menu{
+    opacity: 0;
+    transform: translateY(13px);
+    transition: .3s ease-in-out;
+}
+.second{
+    transform: translateY(0);
+    transform: translateX(13px);
+}
+
+.nav-item:hover > .dropdown-menu,
+.dropdown-item:hover > .dropdown-menu{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+.dropdown-item:hover > .dropdown-menu{
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto; 
+}
+body p {
+}
+body p {
+}
+body p {
+
+}
+body table {
+    margin-left: 500px;
+    text-align: right;
+    color: #0B1864;
+}
+#searchForm {
+    font-size: 80px;
+    letter-spacing: 0px;
+    text-shadow: 50px 50px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 768px) { 
+    .nav-menu {
+        /* les <li> sont positionnés de façon verticale */
+        flex-direction: column; 
+        /* reset de l'espace entre les <li> */
+        justify-content: normal;
+        align-items: normal; 
+        position: fixed;
+        overflow-x: hidden;
+        overflow-y: auto;
+        left: -100%; 
+        top: 3.2rem;
+        width: 100%; 
+        /*
+         trés important de spécifier la hauteur
+         sinon le dropdown sera à coté de son <li> et pas en dessous
+        */
+        height: calc(100vh - 3.2rem); 
+        transition: 0.3s;
+        background-color: #579cd4; 
+        transition: .6s ease-in-out;       
+    }
+    .showNav{
+        display: block;
+    }
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+    #showNav:checked ~ .hamburger .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    #showNav:checked ~ .hamburger .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    #showNav:checked ~ .hamburger .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    /* *** section *** */
+    #showNav:checked ~ .nav-menu {
+        left: 0;
+    } 
+    .nav-item {
+        width: 100%;
+        margin: 0;
+        padding: 0; /* pour que les dropdown-item et leur parent nav-item seront de meme largeur */
+       /* padding-left: 0;  */
+        transition: .6s ease-in-out;
+        position: initial; /* reset de la position */
+        /*
+            .nav-item était au début 'flex' donc son contenus seront l'un 
+            à coté de l'autre.
+            il faut le rendre display block (ou initial)
+        */
+        display: initial;  /* ou bien block*/
+        /*
+        Cela vous permet de désactiver les événements de survol pour tous les éléments
+        */
+        pointer-events: auto; 
+    }
+    .nav-item  .nav-link{
+        padding-left: 1rem;
+    }
+    .dropdown-menu, .second{
+        /* 
+        initial: permet de faire un reset
+        position au debut etait absolute on fait initial elle devient static (valeur par défaut)
+        */
+       position: initial;
+       top: initial; /* c'est par apport au parent (li.nav-item) */
+       left: initial;
+       width: 100%;
+       opacity: initial;
+       transform: initial;
+       transition: initial;
+       display: none; 
+    }
+    .second{
+        margin-left: 0;
+    }
+    .dropdown-menu  > ul{
+        margin-left: 0;
+    } 
+    .second > ul > .dropdown-item > .dropdown-link{
+        padding-left: 2rem;
+    }
+    .second > ul > .dropdown-item > .second > ul > .dropdown-item > .dropdown-link{
+        padding-left: 3rem;
+    }
+   
+
+    .dropdown-menu .dropdown-item{
+        width: 100%;
+        border-bottom: none;
+    }
+    .dropdown-menu .dropdown-item:hover > .dropdown-link{
+        background-color: #53bbf7;
+    }
+
+     .arrow{
+        background-color: #579cd4; 
+        transition: all .6s ease-in-out;
+    }
+    .nav-item:hover .arrow{
+        background-color: #0998f8;
+    }
+    .dropdown-menu .dropdown-menu .arrow{
+        display: none;
+    }
+    /* ******* */
+    .nav-item:hover {
+        background-color: #0998f8;  
+    }
+    .nav-item:hover .nav-link{
+        color: #fff;
+    }
+
+    .nav-item:hover > .dropdown-menu{
+        display: block;
+    }
+    .dropdown-item:hover > .dropdown-menu{
+        display: block;
+    }
+
+    /* *** rotation de i.caret *** */
+    i{ /* , p.dropdown-link i */
+        transform: rotate(0);
+        transition: .5s;
+    }
+    .mvtIcone{
+        transform: rotate(-90deg);
+    }
+    /* **** */
+    .nav-link{
+        padding: 0 .7rem 0 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* *************************** */
+
+    section{
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: calc(100vh - 3.2rem);
+        background-color: rgb(50, 85, 138); 
+        z-index: -1; /* pour l'affichage du nav-menu dans l'ecran mobile */
+    }
+}
