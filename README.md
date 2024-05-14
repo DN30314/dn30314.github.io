@@ -1,2 +1,0 @@
-# zodiac
-Group project
